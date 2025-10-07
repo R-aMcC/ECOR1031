@@ -135,7 +135,7 @@ def has_pair(string: str, char: str) -> bool:
 # Write your main script here
 if __name__ == "__main__":
     while True:
-        print("===========================\nMenu:")
+        print("============================\nMenu:")
         choice = input("""
 1. Add up series
 2. Fibonacci
