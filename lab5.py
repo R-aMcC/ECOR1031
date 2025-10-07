@@ -19,13 +19,12 @@ def tip(bill: float, satisfaction: int) -> float:
     >>> tip(30, 3)
     3.0
     """
-    match satisfaction:
-        case 1:
-            return bill * 0.2
-        case 2:
-            return bill * 0.15
-        case 3:
-            return bill * 0.05
+    if satisfaction == 1:
+        return bill * 0.2
+    elif satisfaction == 2:
+        return bill * 0.15
+    else:
+        return bill * 0.05
 # Type your function definition for Exercise 1 here.
 # ======================================================
 # Exercise 2
@@ -61,7 +60,7 @@ def area_of_disk(radius: float) -> float:
 
     Preconditions: radius >= 0
 
-    >>>  area_of_disk(1.0)
+    >>> area_of_disk(1.0)
     3.141592653589...
     >>> area_of_disk(0)
     0.0
@@ -145,7 +144,7 @@ def alarm_clock(day: int, vacation: bool) -> str:
 # Exercise 6
 def close_far(a: int, b: int, c: int) -> bool:
     """
-    Return True if one of b or c is within 1 of a while the other is at least2 away from both other numbers
+    Return True if one of b or c is within 1 of a while the other is at least 2 away from both other numbers
 
     Preconditions: N/A
 
@@ -199,7 +198,7 @@ def assistance(income:float, children:int) -> float:
         return 2000 * children
     elif income < 30000 and children >= 2:
         return 1000 * children
-    elif 30000 < income < 40000 and children >= 3:
+    elif 30000 <= income < 40000 and children >= 3:
         return 1500 * children
     return 0
 # Type your function definition for Exercise 5 here.
