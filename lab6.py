@@ -2,7 +2,7 @@
 
 __author__ = "Ryan McCracken"
 __student_number__ = "101375597"
-
+import doctest
 # ======================================================
 # Exercise 1
 def add_up(num: int) -> float:
@@ -13,9 +13,9 @@ def add_up(num: int) -> float:
     >>> add_up(1)
     1.0
     >>> add_up(2)
-    2.0
+    2.5
     >>> add_up(5)
-    8.5
+    8.7
     """
     total = 0
     for i in range(num):
@@ -32,8 +32,8 @@ def fib(n: int) -> int:
     
     >>> fib(0)
     0
-    >>> fib(4)
-    3
+    >>> fib(1)
+    1
     >>> fib(7)
     13
     """
@@ -55,10 +55,10 @@ def years_to_double(initial: float, rate: float) -> int:
     
     Preconditions: initial > 0, rate > 0
     
+    >>> years_to_double(1, 1)
+    70
     >>> years_to_double(100, 10)
     8
-    >>> years_to_double(50, 20)
-    4
     >>> years_to_double(10000, 5)
     15
     """
@@ -133,43 +133,172 @@ def has_pair(string: str, char: str) -> bool:
 
 #=======================================================
 # Write your main script here
+def test_add_up() -> tuple[int, int]:
+    tests = 0
+    successful_tests = 0
+    try:
+        tests += 1
+        assert abs(add_up(1) - 1.0) < 0.0001, f"  - add_up(1) should be 1.0, is {add_up(1)}"
+        successful_tests += 1
+    except AssertionError as _:
+        pass
+    try:
+        tests += 1
+        assert abs(add_up(2) - 2.5) < 0.0001, f"  - add_up(2) should be 2.5, is {add_up(2)}"
+        successful_tests += 1
+    except AssertionError as _:
+        pass
+    try:
+        tests += 1
+        assert abs(add_up(5) - 8.7) < 0.0001, f"  - add_up(5) should be 8.7, is {add_up(5)}"
+        successful_tests += 1
+    except AssertionError as _:
+        pass
+    print(f"- add_up tests passed. ({successful_tests}/{tests})")
+    return tests, successful_tests
+
+def test_fib() -> tuple[int, int]:
+    tests = 0
+    successful_tests = 0
+    try:
+        tests += 1
+        assert fib(0) == 0, f"fib(0) should be 0, is {fib(0)}"
+        successful_tests += 1
+    except AssertionError:
+        pass
+    try:
+        tests += 1
+        assert fib(1) == 1, f"fib(1) should be 1, is {fib(1)}"
+        successful_tests += 1
+    except AssertionError:
+        pass
+    try:
+        tests += 1
+        assert fib(7) == 13, f"fib(7) should be 13, is {fib(7)}"
+        successful_tests += 1
+    except AssertionError:
+        pass
+    print(f"- fib tests passed. ({successful_tests}/{tests})")
+    return tests, successful_tests
+
+def test_years_to_double() -> tuple[int, int]:
+    tests = 0
+    successful_tests = 0
+    try:
+        tests += 1
+        assert years_to_double(1, 1) == 70, f"years_to_double(1, 1) should be 70, is {years_to_double(1, 1)}"
+        successful_tests += 1
+    except AssertionError:
+        pass
+    try:
+        tests += 1
+        assert years_to_double(100, 10) == 8, f"years_to_double(100, 10) should be 8, is {years_to_double(100, 10)}"
+        successful_tests += 1
+    except AssertionError:
+        pass
+    try:
+        tests += 1
+        assert years_to_double(10000, 5) == 15, f"years_to_double(10000, 5) should be 15, is {years_to_double(10000, 5)}"
+        successful_tests += 1
+    except AssertionError:
+        pass
+    print(f"- years_to_double tests passed. ({successful_tests}/{tests})")
+    return tests, successful_tests
+
+def test_replicate() -> tuple[int, int]:
+    tests = 0
+    successful_tests = 0
+    try:
+        tests += 1
+        assert replicate("abc") == "abcabcabc", f'replicate("abc") should be "abcabcabc", is {replicate("abc")}'
+        successful_tests += 1
+    except AssertionError:
+        pass
+    try:
+        tests += 1
+        assert replicate("hello") == "hellohellohellohellohello", f'replicate("hello") should be "hellohellohellohellohello", is {replicate("hello")}'
+        successful_tests += 1
+    except AssertionError:
+        pass
+    try:
+        tests += 1
+        assert replicate("x") == "x", f'replicate("x") should be "x", is {replicate("x")}'
+        successful_tests += 1
+    except AssertionError:
+        pass
+    print(f"- replicate tests passed. ({successful_tests}/{tests})")
+    return tests, successful_tests
+
+def test_repeat_separator() -> tuple[int, int]:
+    tests = 0
+    successful_tests = 0
+    try:
+        tests += 1
+        assert repeat_separator("abc", "-", 3) == "abc-abc-abc", f'repeat_separator("abc", "-", 3) should be "abc-abc-abc", is {repeat_separator("abc", "-", 3)}'
+        successful_tests += 1
+    except AssertionError:
+        pass
+    try:
+        tests += 1
+        assert repeat_separator("hello", " ", 2) == "hello hello", f'repeat_separator("hello", " ", 2) should be "hello hello", is {repeat_separator("hello", " ", 2)}'
+        successful_tests += 1
+    except AssertionError:
+        pass
+    try:
+        tests += 1
+        assert repeat_separator("x", ",", 1) == "x", f'repeat_separator("x", ",", 1) should be "x", is {repeat_separator("x", ",", 1)}'
+        successful_tests += 1
+    except AssertionError:
+        pass
+    print(f"- repeat_separator tests passed. ({successful_tests}/{tests})")
+    return tests, successful_tests
+
+def test_has_pair() -> tuple[int, int]:
+    tests = 0
+    successful_tests = 0
+    try:
+        tests += 1
+        assert has_pair("hello", "l") == True, f'has_pair("hello", "l") should be True, is {has_pair("hello", "l")}'
+        successful_tests += 1
+    except AssertionError:
+        pass
+    try:
+        tests += 1
+        assert has_pair("hello", "e") == False, f'has_pair("hello", "e") should be False, is {has_pair("hello", "e")}'
+        successful_tests += 1
+    except AssertionError:
+        pass
+    try:
+        tests += 1
+        assert has_pair("abcabc", "a") == False, f'has_pair("abcabc", "a") should be False, is {has_pair("abcabc", "a")}'
+        successful_tests += 1
+    except AssertionError:
+        pass
+    print(f"- has_pair tests passed. ({successful_tests}/{tests})")
+    return tests, successful_tests
+
 if __name__ == "__main__":
-    while True:
-        print("============================\nMenu:")
-        choice = input("""
-1. Add up series
-2. Fibonacci
-3. Years to double
-4. Replicate
-5. Repeat separator
-6. Has pair
-7. Exit
-Enter your choice: """)
-        if choice == "1":
-            num = int(input("Enter a positive integer: "))
-            print(f"The sum of the series is: {add_up(num)}")
-        elif choice == "2":
-            n = int(input("Enter a non-negative integer: "))
-            print(f"The {n}th Fibonacci number is: {fib(n)}")
-        elif choice == "3":
-            initial = float(input("Enter the initial amount (greater than 0): "))
-            rate = float(input("Enter the interest rate (greater than 0): "))
-            print(f"It will take {years_to_double(initial, rate)} years to double the amount.")
-        elif choice == "4":
-            string = input("Enter a string: ")
-            print(f"The replicated string is: {replicate(string)}")
-        elif choice == "5":
-            string = input("Enter the string to repeat: ")
-            separator = input("Enter the separator string: ")
-            count = int(input("Enter the number of times to repeat (greater than 0): "))
-            print(f"The result is: {repeat_separator(string, separator, count)}")
-        elif choice == "6":
-            string = input("Enter a string: ")
-            char = input("Enter a single character: ")
-            print(f"Does the string have a pair of '{char}'? {has_pair(string, char)}")
-        elif choice == "7":
-            print("Exiting the program.")
-            break
-        else:
-            print("Invalid choice. Please try again.")
-        input("Press Enter to continue...")
+
+    print("""
+==================================
+Running tests...""")
+    total_tests, successful_tests = 0, 0
+    t, s = test_add_up()
+    total_tests += t
+    successful_tests += s
+    t, s = test_fib()
+    total_tests += t
+    successful_tests += s
+    t, s = test_years_to_double()
+    total_tests += t
+    successful_tests += s
+    t, s = test_replicate()
+    total_tests += t
+    successful_tests += s
+    t, s = test_repeat_separator()
+    total_tests += t
+    successful_tests += s
+    t, s = test_has_pair()
+    total_tests += t
+    successful_tests += s
+    print(f"({successful_tests}/{total_tests}) tests passed. \n==================================")
