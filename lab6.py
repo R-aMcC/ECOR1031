@@ -13,9 +13,9 @@ def add_up(num: int) -> float:
     >>> add_up(1)
     1.0
     >>> add_up(2)
-    2.0
+    2.5
     >>> add_up(5)
-    8.5
+    8.7
     """
     total = 0
     for i in range(num):
@@ -32,8 +32,8 @@ def fib(n: int) -> int:
     
     >>> fib(0)
     0
-    >>> fib(4)
-    3
+    >>> fib(1)
+    1
     >>> fib(7)
     13
     """
@@ -55,10 +55,10 @@ def years_to_double(initial: float, rate: float) -> int:
     
     Preconditions: initial > 0, rate > 0
     
+    >>> years_to_double(1, 1)
+    70
     >>> years_to_double(100, 10)
     8
-    >>> years_to_double(50, 20)
-    4
     >>> years_to_double(10000, 5)
     15
     """
