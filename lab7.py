@@ -6,7 +6,7 @@ import lab6 as l
 
 # ======================================================
 # Type your function definition for test_add_up() here.
-def test_add_up() -> tuple[int, int]:
+def test_add_up():
     test_cases = [[1, 1.0], [2, 2.5], [5, 8.7], [10, 22.2186508], [3, 4.3333333]]
 
     tests = 0
@@ -20,11 +20,11 @@ def test_add_up() -> tuple[int, int]:
             successful_tests += 1
         except AssertionError as e:
             print(f" - Test failed in add_up: {e}")
-    return tests, successful_tests
+    return tests - successful_tests
 
 # ======================================================
 # Type your function definition for test_years_to_double() here.
-def test_years_to_double() -> tuple[int, int]:
+def test_years_to_double():
     test_cases = [[[1, 1], 70], [[100, 10], 8], [[10000, 5], 15], [[100, 100], 1], [[100, 0.01], 6932]]
     tests = 0
     successful_tests = 0
@@ -37,11 +37,11 @@ def test_years_to_double() -> tuple[int, int]:
             successful_tests += 1
         except AssertionError as e:
             print(f" - Test failed in years_to_double: {e}")
-    return tests, successful_tests
+    return tests - successful_tests
 
 # ======================================================
 # Type your function definition for test_replicate() here.
-def test_replicate() -> tuple[int, int]:
+def test_replicate():
     test_cases = [["abc", "abcabcabc"], ["hello", "hellohellohellohellohello"], ["x", "x"], ["", ""], ["longstring", "longstringlongstringlongstringlongstringlongstringlongstringlongstringlongstringlongstringlongstring"]]
     tests = 0
     successful_tests = 0
@@ -54,10 +54,10 @@ def test_replicate() -> tuple[int, int]:
             successful_tests += 1
         except AssertionError as e:
             print(f" - Test failed in replicate: {e}")
-    return tests, successful_tests
+    return tests - successful_tests
 # ======================================================
 # Type your function definition for test_repeat_separator() here.
-def test_repeat_separator() -> tuple[int, int]:
+def test_repeat_separator():
     test_cases = [[["abc", "---", 3], "abc---abc---abc"], [["hello", " ", 2], "hello hello"], [["x", ",", 1], "x"], [["yes", "", 4], "yesyesyesyes"], [["", "-", 5], "----"]]
     tests = 0
     successful_tests = 0
@@ -70,11 +70,11 @@ def test_repeat_separator() -> tuple[int, int]:
             successful_tests += 1
         except AssertionError as e:
             print(f" - Test failed in repeat_separator: {e}")
-    return tests, successful_tests
+    return tests - successful_tests
 
 # ======================================================
 # Type your function definition for test_has_pair() here.
-def test_has_pair() -> tuple[int, int]:
+def test_has_pair():
     test_cases = [["hello", "l", True], ["hello", "e", False], ["abcabc", "a", False], ["", "a", False], ["Aa", "a", False]]
     tests = 0
     successful_tests = 0
@@ -88,7 +88,7 @@ def test_has_pair() -> tuple[int, int]:
         except AssertionError as e:
             print(f" - Test failed in has_pair: {e}")
 
-    return tests, successful_tests
+    return tests - successful_tests
 # =======================================================
 # Write your main script here
 try:
@@ -96,27 +96,26 @@ try:
     print("""
 ==================================
 Running tests...""")
-    total_tests, successful_tests = 0, 0
-    t, s = test_add_up()
-    print(f"Test add_up: ({s}/{t}) tests passed.")
-    total_tests += t
-    successful_tests += s
-    t, s = test_years_to_double()
-    print(f"Test years_to_double: ({s}/{t}) tests passed.")
-    total_tests += t
-    successful_tests += s
-    t, s = test_replicate()
-    print(f"Test replicate: ({s}/{t}) tests passed.")
-    total_tests += t
-    successful_tests += s
-    t, s = test_repeat_separator()
-    print(f"Test repeat_separator: ({s}/{t}) tests passed.")
-    total_tests += t
-    successful_tests += s
-    t, s = test_has_pair()
-    print(f"Test has_pair: ({s}/{t}) tests passed.")
-    total_tests += t
-    successful_tests += s
-    print(f"({successful_tests}/{total_tests}) tests passed. \n==================================")
+    print("Testing add_up()...")
+    failed_tests = test_add_up()
+    print(f"- {failed_tests} tests failed")
+    print("Testing has_pair()...")
+    f = test_has_pair()
+    print(f"- {f} tests failed")
+    print("Testing repeat_seperator()...")
+    failed_tests += f
+    f = test_repeat_separator()
+    print(f"- {f} tests failed")
+    failed_tests += f
+    print(f"Testing replicate()...")
+    f = test_replicate()
+    print(f"- {f} tests failed")
+    failed_tests += f
+    print("Testing years_to_double()")
+    f = test_years_to_double()
+    print(f"- {f} tests failed")
+    failed_tests += f
+    print(f"Total: {failed_tests} tests failed... \n ==================================")
+
 except AssertionError:
     pass
