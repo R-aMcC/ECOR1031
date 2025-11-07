@@ -10,6 +10,7 @@ def make_pi() -> list[int]:
     Return a list that contains the first three digits of pi.
     
     Preconditions: None
+
     >>> make_pi()
     [3, 1, 4]
     """
@@ -97,6 +98,15 @@ def divisors(n : int) -> list[int]:
     Return a list of all divisors of n
 
     Precondition: n > 0
+
+    >>> divisors(6)
+    [1, 2, 3, 6]
+
+    >>> divisors(15)
+    [1, 3, 5, 15]
+
+    >>> divisors(1)
+    [1]
     """
     divs = []
     for i in range(1, n):
@@ -112,6 +122,22 @@ def no_evens_zero(lst: list[int]) -> None:
     Return None. Modify the input list by removing all even numbers including 0.
 
     Precondition: None
+
+    >>> lst = [1, 2, 3, 4, 5]
+    >>> no_evens_zero(lst)
+    >>> lst
+    [1, 3, 5]
+
+    >>> lst = [2, 4, 6, 8]
+    >>> no_evens_zero(lst)
+    >>> lst
+    []
+
+    >>> lst = []
+    >>> no_evens_zero(lst)
+    >>> lst
+    []
+
     """
     i = 0
     while i < len(lst):
@@ -126,8 +152,24 @@ def no_evens_zero(lst: list[int]) -> None:
 def double_odd_index(lst: list[int]) -> None:
     """
     Return None. Modify the input list by doubling the values at odd indices.
-
+    
     Precondition: None
+    
+    >>> lst = [1, 2, 3, 4, 5]
+    >>> double_odd_index(lst)
+    >>> lst
+    [1, 4, 3, 8, 5]
+
+    >>> lst = [10, 20, 30]
+    >>> double_odd_index(lst)
+    >>> lst
+    [10, 40, 30]
+    
+    >>> lst = []
+    >>> double_odd_index(lst)
+    >>> lst
+    []
+
     """
     for i in range (1, len(lst), 2):
         lst[i] *= 2
