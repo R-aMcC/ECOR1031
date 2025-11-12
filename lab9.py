@@ -197,10 +197,3 @@ def no_duplicates(lst: list[int]) -> list[int]:
     return new_lst
 
 # Type your function definition for Exercise 8 here.
-
-
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod(verbose=True)
